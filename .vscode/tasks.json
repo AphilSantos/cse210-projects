@@ -255,7 +255,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/csharp-prep/Prep3/Prep3.csproj",
+                "${workspaceFolder}/prove/Develop02/Develop02.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -267,7 +267,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/csharp-prep/Prep3/Prep3.csproj",
+                "${workspaceFolder}/prove/Develop02/Develop02.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -281,7 +281,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/csharp-prep/Prep3/Prep3.csproj"
+                "${workspaceFolder}/prove/Develop02/Develop02.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
