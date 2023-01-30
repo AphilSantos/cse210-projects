@@ -23,21 +23,20 @@ public class Journal
         }
     }
 
-    // Method to save the file
+    // Method to save the file as csv
     public void SaveFile()
     {
         Console.WriteLine("What would you like to name this file? ");
         _fileName = Console.ReadLine();
+        _fileName = Console.ReadLine() + ".csv";
         using (StreamWriter outputFile = new StreamWriter(_fileName))
-        {
-            foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date} - {entry._promptQuestion} - {entry._userResponse}");
-                // outputFile.WriteLine($"{entry._date}");
-                // outputFile.WriteLine($"{entry._promptQuestion}");
-                // outputFile.WriteLine($"{entry._userResponse}");
+                outputFile.WriteLine("Date,Prompt Question,User Response");
+                foreach (Entry entry in _entries)
+                {
+                    outputFile.WriteLine($"{entry._date},{entry._promptQuestion},{entry._userResponse}");
+                }
             }
-        }
     }
 
     // Method to load the file
