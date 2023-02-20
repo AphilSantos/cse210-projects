@@ -1,52 +1,77 @@
+
 using System;
 using System.Collections.Generic;
 
-
-    class Program
+class Program
+{
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            Dictionary<string, string> scripture = new Dictionary<string, string>
-            {
-                { "reference", "John 3:16" },
-                { "text", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." }
-            };
+        Scripture scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
+        Console.Clear();
+        scripture.Display();
 
-            List<string> words = scripture["text"].Split(' ').ToList();
-            int totalWords = words.Count;
+        while (true)
+        {
+            Console.WriteLine("Press enter to continue or type 'quit' to exit.");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "quit")
+            {
+                break;
+            }
 
             Console.Clear();
-            Console.WriteLine("{0}: {1}", scripture["reference"], scripture["text"]);
-            Console.WriteLine("Press Enter or type quit:");
+            scripture.HideRandomWord();
+            scripture.Display();
 
-            while (true)
+            if (scripture.IsFullyHidden())
             {
-                string input = Console.ReadLine();
-
-                if (input == "quit")
-                {
-                    break;
-                }
-
-                if (words.Count == 0)
-                {
-                    Console.WriteLine("You have memorized the scripture!");
-                    break;
-                }
-
-                Console.Clear();
-                int hiddenWords = totalWords - words.Count;
-                int toHide = Math.Min(words.Count, 3);
-                for (int i = 0; i < toHide; i++)
-                {
-                    int index = new Random().Next(words.Count);
-                    words[index] = "_";
-                }
-
-                Console.WriteLine("{0}: ", scripture["reference"]);
-                Console.WriteLine("{0} ({1}/{2} words memorized)", string.Join(" ", words), hiddenWords, totalWords);
-                Console.WriteLine("Press Enter or type quit:");
+                break;
             }
         }
     }
+}
 
+class Scripture
+{
+    private string reference;
+    private List<string> words;
+    private List<bool> hidden;
+
+    public Scripture(string reference, string text)
+    {
+        this.reference = reference;
+        this.words = new List<string>(text.Split(' '));
+        this.hidden = new List<bool>(new bool[this.words.Count]);
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"{reference}:");
+        for (int i = 0; i < words.Count; i++)
+        {
+            if (hidden[i])
+            {
+                Console.Write("___");
+            }
+            else
+            {
+                Console.Write(words[i]);
+            }
+
+            Console.Write(" ");
+        }
+        Console.WriteLine();
+    }
+
+    public void HideRandomWord()
+    {
+        Random random = new Random();
+        int index = random.Next(words.Count);
+        hidden[index] = true;
+    }
+
+    public bool IsFullyHidden()
+    {
+        return hidden.TrueForAll(x => x);
+    }
+}
