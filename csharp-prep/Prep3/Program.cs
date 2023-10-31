@@ -10,7 +10,7 @@ class Program
 
         Console.WriteLine(num);
 
-        Console.WriteLine("Guess the magic number");
+        Console.WriteLine("Guess the magic number: ");
 
         int userInput = -1;
 

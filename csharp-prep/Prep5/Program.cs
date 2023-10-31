@@ -45,6 +45,6 @@ class Program
 
     static void Combine(string name, int square)
     {
-        Console.WriteLine($"Your name is {name} and your squared number is {square}.");
+        Console.WriteLine($"Your name is {name} and your squared number is {square}!");
     }
 }

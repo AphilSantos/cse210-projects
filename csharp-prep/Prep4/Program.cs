@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("LISTS");
+        Console.WriteLine("LISTS ");
 
         Console.WriteLine("Enter a list of numbers, type 0 when finished.");
 
