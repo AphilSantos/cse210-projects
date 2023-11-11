@@ -23,7 +23,7 @@ class Program
 
         Console.WriteLine();
         Console.WriteLine("Welcome to your Personal Journal!");
-        Console.Write("Would you like to continue to the main menu? Y/N: ");
+        Console.Write("Would you like to continue to the main menu? Y/N:  ");
         Console.ReadLine();
 
         if (start == "y")

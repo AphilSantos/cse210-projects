@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-// Class is Entry
+// Class name is Entry
 public class Entry {
 
     // Variables for the class

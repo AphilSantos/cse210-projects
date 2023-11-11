@@ -26,7 +26,7 @@ public class Journal
     // Method to save the file as csv
     public void SaveFile()
     {
-        Console.WriteLine("What would you like to name this file? ");
+        Console.WriteLine("What would it be the name this file? ");
         _fileName = Console.ReadLine();
         _fileName = Console.ReadLine() + ".csv";
         using (StreamWriter outputFile = new StreamWriter(_fileName))
