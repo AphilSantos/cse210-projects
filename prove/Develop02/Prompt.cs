@@ -8,7 +8,7 @@ public class Prompt
     public string _prompt2 = "What was the best part of my day?";
     public string _prompt3 = "How did I see the hand of the Lord in my life today?";
     public string _prompt4 = "What was the strongest emotion I felt today?";
-    public string _prompt5 = "If I had one thing I could do over today, what would it be?";
+    public string _prompt5 = "If I had one thing I could do over today, what will it be?";
 
     // Initialize list into a new list before using it
     public List<string> _prompt = new List<string>();
