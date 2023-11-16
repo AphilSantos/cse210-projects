@@ -5,41 +5,50 @@ namespace ScriptureApp
 {
     class Reference
     {
-        public string book;
-        public int chapter;
-        public int verse;
+        public string Book { get; set; }
+        public int Chapter { get; set; }
+        public int Verse { get; set; }
+
+        public Reference(string book, int chapter, int verse)
+        {
+            Book = book;
+            Chapter = chapter;
+            Verse = verse;
+        }
+
+        public override string ToString()
+        {
+            return $"{Book} {Chapter}:{Verse}";
+        }
     }
 
     class Scripture
     {
-        public Reference reference;
-        public string text;
-        public List<Word> words;
+        public Reference Reference { get; private set; }
+        private List<Word> words;
+        private Random random = new Random();
 
-        public void HideWords()
+        public Scripture(string book, int chapter, int verse, string text)
         {
-            foreach (Word word in words)
+            Reference = new Reference(book, chapter, verse);
+            words = new List<Word>();
+            foreach (var wordText in text.Split(' '))
             {
-                word.Hide();
+                words.Add(new Word(wordText));
             }
         }
 
-        public string GetRenderedText()
+        public void HideRandomWord()
         {
-            string result = "";
-            foreach (Word word in words)
-            {
-                if (!word.IsHidden())
-                {
-                    result += word.text + " ";
-                }
-            }
-            return result;
+            if (words.Count == 0) return;
+
+            int index = random.Next(words.Count);
+            words[index].Hide();
         }
 
-        public bool IsCompletelyHidden()
+        public bool IsFullyHidden()
         {
-            foreach (Word word in words)
+            foreach (var word in words)
             {
                 if (!word.IsHidden())
                 {
@@ -48,21 +57,32 @@ namespace ScriptureApp
             }
             return true;
         }
+
+        public override string ToString()
+        {
+            string result = $"{Reference}: ";
+            foreach (var word in words)
+            {
+                result += word.GetRenderedText() + " ";
+            }
+            return result;
+        }
     }
 
     class Word
     {
-        public string text;
-        public bool hidden;
+        public string Text { get; private set; }
+        private bool hidden;
+
+        public Word(string text)
+        {
+            Text = text;
+            hidden = false;
+        }
 
         public void Hide()
         {
             hidden = true;
-        }
-
-        public void Show()
-        {
-            hidden = false;
         }
 
         public bool IsHidden()
@@ -72,11 +92,7 @@ namespace ScriptureApp
 
         public string GetRenderedText()
         {
-            if (!hidden)
-            {
-                return text;
-            }
-            return "";
+            return hidden ? "___" : Text;
         }
     }
 }
