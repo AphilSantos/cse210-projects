@@ -61,7 +61,7 @@ static class SpinAnimation
                 Console.WriteLine("4. Exit");
 
                 string input = Console.ReadLine();
-                Console.Clear();
+                ClearConsoleSafely();
 
                 switch (input)
                 {
@@ -85,10 +85,25 @@ static class SpinAnimation
                 }
 
                 Console.WriteLine("Press any key to continue.");
-                Console.ReadKey();
+                Console.Read();
+                ClearConsoleSafely();
+
+            }
+        }
+         private static void ClearConsoleSafely()
+    {
+        try
+        {
+            if (Environment.UserInteractive && !Console.IsOutputRedirected)
+            {
                 Console.Clear();
             }
         }
+        catch (IOException)
+        {
+            Console.WriteLine("Error occurred while clearing the console.");
+        }
+    }
     }
 
     abstract class Activity
