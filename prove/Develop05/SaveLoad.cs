@@ -25,18 +25,16 @@ class SaveLoad
                 }
                 else
                 {
-                // Ex goal
-                // SimpleGoal:Give a talk,Speak in Sacrament meeting when asked,100,True
+
                     if (goal.Length > 0)
                     {
                     // Split by :
                         string[] goalTypeAndData = goal.Split(":");
                         string goalType = goalTypeAndData[0];
                         string goalData = goalTypeAndData[1];
-                    // ["SimpleGoal", "Give a talk,Speak in Sacrament meeting when asked,100,True"]
+    
                         string[] goalAttributes = goalData.Split(",");
-                    // Ex ewgoalAttributes
-                    // ["Give a talk", "Speak in Sacrament meeting when asked" , "100" , "True"]
+
 
                         if (goalType == "SimpleGoal")
                         {
